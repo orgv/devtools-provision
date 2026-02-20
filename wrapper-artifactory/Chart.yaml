@@ -5,4 +5,3 @@ dependencies:
   - name: artifactory-oss
     version: "107.77.3"
     repository: "https://charts.jfrog.io"
-    condition: artifactory-oss.enabled
