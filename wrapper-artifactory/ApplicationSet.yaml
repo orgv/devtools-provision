@@ -19,7 +19,7 @@ spec:
         path: 'wrapper-artifactory'
         helm:
           valueFiles:
-            - 'https://github.com/orgv/devtools-definition/{{path}}/values.yaml'
+            - 'https://raw.githubusercontent.com/orgv/devtools-definition/main/{{path}}/values.yaml'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'artifactory-{{path.basename}}'
