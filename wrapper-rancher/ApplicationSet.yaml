@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rancher-application-set
+spec:
+  generators:
+    - git:
+        repoURL: 'https://github.com/orgv/devtools-definition.git'
+        revision: HEAD
+        directories:
+          - path: 'rancher/values/*'
+  template:
+    metadata:
+      name: 'rancher-{{path.basename}}' 
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/orgv/devtools-provision.git'
+        path: 'wrapper-rancher'
+        helm:
+          valueFiles:
+            - 'https://raw.githubusercontent.com/orgv/devtools-definition/main/{{path}}/values.yaml'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'rancher-{{path.basename}}'
