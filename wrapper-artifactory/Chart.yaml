@@ -1,0 +1,7 @@
+apiVersion: v2
+name: artifactory-wrapper
+version: 1.0.0
+dependencies:
+  - name: artifactory-oss
+    version: "107.77.3"
+    repository: "https://charts.jfrog.io"
