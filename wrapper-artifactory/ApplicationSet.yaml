@@ -20,3 +20,6 @@ spec:
         helm:
           valueFiles:
             - 'https://github.com/orgv/devtools-definition/{{path}}/values.yaml'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: argocd
