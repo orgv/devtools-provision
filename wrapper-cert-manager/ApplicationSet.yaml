@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cert-manager-application-set
+spec:
+  generators:
+    - git:
+        repoURL: 'https://github.com/orgv/devtools-definition.git'
+        revision: HEAD
+        directories:
+          - path: 'cert-manager/values/*'
+  template:
+    metadata:
+      name: 'cert-manager-{{path.basename}}' 
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/orgv/devtools-provision.git'
+        path: 'wrapper-cert-manager'
+        helm:
+          valueFiles:
+            - 'https://raw.githubusercontent.com/orgv/devtools-definition/main/{{path}}/values.yaml'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'cert-manager-{{path.basename}}'
