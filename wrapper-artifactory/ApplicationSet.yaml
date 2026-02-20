@@ -22,4 +22,4 @@ spec:
             - 'https://github.com/orgv/devtools-definition/{{path}}/values.yaml'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: artifactory
+        namespace: 'artifactory-{{path.basename}}'
