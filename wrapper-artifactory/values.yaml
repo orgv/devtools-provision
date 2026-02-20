@@ -1,4 +1,5 @@
 artifactory-oss:
+  enabled: false # The subchart is disabled by default! Will be enabled dynamically later by the 2nd ApplicationSet. That way, only the AS will be deployed without the inner chart!
   artifactory:
     persistence:
       enabled: true

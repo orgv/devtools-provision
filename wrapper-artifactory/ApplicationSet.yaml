@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: artifactory-application-set
+spec:
+  generators:
+    - git:
+        repoURL: 'https://github.com/orgv/devtools-definition.git'
+        directories:
+          - path: 'artifactory/values/*'
+  template:
+    metadata:
+      name: 'artifactory-{{path.basename}}' 
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/orgv/devtools-provision.git'
+        path: 'artifactory-wrapper'
+        helm:
+          valueFiles:
+            - 'https://github.com/orgv/devtools-definition/{{path}}/values.yaml'
